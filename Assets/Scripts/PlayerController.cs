@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private bool _isWalking;
     private bool _isDashing;
+    private bool _isRunning;
     private Vector2 _movementInput;
     private Vector2 _dashDirection;
     private CurrentDirection _currentDirection = CurrentDirection.Down;
@@ -48,10 +49,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         GetInput();
-    }
-
-    private void FixedUpdate()
-    {
         UpdateMovement();
     }
 
@@ -79,8 +76,8 @@ public class PlayerController : MonoBehaviour
             _currentDirection = CurrentDirection.Up;
         }
         _animator.SetInteger(Direction, (int)_currentDirection);
-
         _isDashing = Input.GetKeyDown(KeyCode.Space);
+        _isRunning = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void UpdateMovement()
@@ -94,7 +91,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             var movement = _movementInput * moveSpeed;
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (_isRunning)
             {
                 movement *= runSpeed / moveSpeed;
             }

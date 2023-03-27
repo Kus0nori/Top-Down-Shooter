@@ -389,7 +389,7 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
-  animator: {fileID: 1171133499}
+  dashLoopInterval: 0.004
 --- !u!50 &1171133496
 Rigidbody2D:
   serializedVersion: 4
